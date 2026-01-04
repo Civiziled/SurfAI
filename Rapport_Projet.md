@@ -1,53 +1,49 @@
 # SurferAI – Rapport de Projet
 
 ## 1. Introduction
-- **Liens du projet**
-  - **Code Source (GitHub)** : [https://github.com/Civiziled/SurfAI](https://github.com/Civiziled/SurfAI)
-  - **URL de déploiement** : *[Insérer l'URL de votre application déployée ici]*
 - **Contexte et objectifs**
-  Le projet "SurferAI" est né de la volonté de dédramatiser l'accès à l'intelligence artificielle. Les interfaces actuelles (ChatGPT, Claude) sont souvent austères et cliniques. L'objectif était de créer une interface "SaaS" complète, fonctionnelle et engageante, qui plonge l'utilisateur dans un univers détendu ("Surf & Océan") pour favoriser la créativité et le "flow", tout en conservant la puissance des modèles LLM modernes.
+  Le projet "SurferAI" est né de la volonté de dédramatiser l'accès à l'intelligence artificielle. Les interfaces actuelles (ChatGPT, Claude) sont souvent austères et cliniques. L'objectif était de créer une interface "SaaS" complète, fonctionnelle et engageante, qui plonge l'utilisateur dans un univers détendu ("Surf & Océan") pour favoriser la créativité et le "flow", tout en conservant la puissance des modèles LLM modernes via l'API OpenRouter.
 - **Périmètre du projet**
-  L'application permet aux utilisateurs de s'inscrire, de gérer leur profil, de créer des conversations avec différents modèles d'IA (GPT-4, Claude 3), et d'interagir via une interface de chat fluide supportant le texte et les images. Le projet inclut également une landing page marketing complète et une interface d'administration basique via le tableau de bord.
+  L'application permet aux utilisateurs de s'inscrire, de gérer leur profil, de créer des conversations avec différents modèles d'IA (GPT-4, Claude 3, etc.), et d'interagir via une interface de chat fluide supportant le texte. Le projet inclut également une landing page marketing complète et une interface d'administration basique via le tableau de bord utilisateur.
 - **Technologies utilisées**
-  - **Framework Backend** : Laravel 11 (PHP 8.2+)
-  - **Frontend** : Vue.js 3 (Composition API) avec Inertia.js pour le routing unifié.
-  - **Styling** : Tailwind CSS avec une configuration de thème personnalisée.
-  - **Base de données** : MySQL.
+  - **Framework Backend** : Laravel 12.44.0 (PHP 8.4.16)
+  - **Frontend** : Vue.js 3 (Composition API) avec Inertia.js pour le routing.
+  - **Styling** : Tailwind CSS avec configuration de thème personnalisée ("Surfer Theme").
+  - **Base de données** : SQLite (Dev) / MySQL (Prod).
   - **IA & Streaming** : Intégration API OpenRouter avec gestion du Streaming (Server-Sent Events).
-  - **Tests** : Laravel Dusk pour les tests End-to-End (E2E).
+  - **Tests** : Laravel Dusk pour les tests End-to-End.
 
 ## 2. Thématisation & Identité
 ### 2.1 Thème choisi
 - **Justification du choix**
   Le thème du surf ("Ride the AI Wave") a été retenu pour son aspect visuel fort et sa métaphore pertinente : l'IA est une vague puissante qu'il faut apprendre à maîtriser. Ce choix permet de se démarquer immédiatement de la concurrence "Tech/Blue" habituelle.
 - **Public cible identifié**
-  Les "Digital Nomads", créateurs de contenu et freelances tech qui cherchent des outils performants mais avec une âme et une expérience utilisateur (UX) supérieure.
+  Les "Digital Nomads", créateurs de contenu, freelances et étudiants qui cherchent des outils performants mais avec une expérience utilisateur (UX) inspirante et moins stressante.
 - **Analyse des besoins du public cible**
-  Ce public a besoin de rapidité (d'où le choix d'Inertia et du Streaming), de simplicité, mais aussi d'une interface inspirante qui réduit la fatigue visuelle (Dark mode, palettes douces).
+  Ce public a besoin de rapidité (d'où le choix d'Inertia et du Streaming), de simplicité, mais aussi d'une interface qui réduit la fatigue visuelle (Dark mode, palettes douces, typographie lisible).
 
 ### 2.2 Personnalité de l'IA
 - **Ton et style de communication définis**
-  L'assistant se nomme "Coach Surfer". Il adopte un ton bienveillant, tutoyant et énergique.
+  L'assistant se nomme "Coach Surfer". Il adopte un ton bienveillant, tutoyant, énergique et "chill".
 - **Instructions système créées**
-  Le *System Prompt* injecté dans chaque conversation est : *"Tu es 'Coach Surfer', un assistant AI ultra-cool, expert en surf et en 'good vibes'. Tu parles français avec un ton décontracté, tu utilises le tutoiement et des expressions de surfeur. Ton objectif est d'aider l'utilisateur à naviguer dans ses tâches avec positivisme."*
+  Le *System Prompt* injecté est : *"Tu es 'Coach Surfer', un assistant AI ultra-cool, expert en surf et en 'good vibes'. Tu parles français avec un ton décontracté, tu utilises le tutoiement et des expressions de surfeur. Ton objectif est d'aider l'utilisateur à naviguer dans ses tâches avec positivisme."*
 - **Exemples de réponses typiques**
   - *"Ça farte ! Quelle vague d'idées on attaque aujourd'hui ?"*
   - *"T'inquiète pas pour ce bug, on va le lisser comme une planche neuve."*
 
 ### 2.3 Design & Branding
 - **Charte graphique**
-  - **Couleurs** : Utilisation de variables CSS/Tailwind personnalisées : `surf-teal` (#00B4D8) pour l'action, `surf-ocean` (#0077B6) pour la profondeur, `surf-sunset` (#FF9E00) pour les accents chauds.
-  - **Typographie** : *Permanent Marker* pour les titres (côté fun/manuscrit) et *Figtree* pour le corps de texte (lisibilité).
+  - **Couleurs** : `surf-teal` (#00B4D8) pour l'action, `surf-ocean` (#0077B6) pour la profondeur, `surf-sunset` (#FF9E00) pour les accents chauds/alertes.
+  - **Typographie** : *Permanent Marker* pour les h1/h2 (côté fun) et *Figtree* pour le corps de texte (lisibilité optimale).
 - **Choix d'iconographie**
-  Mélange d'emojis natifs (🌊, 🏄, 🌴) pour l'immersion émotionnelle et d'icônes SVG (Heroicons) pour les éléments fonctionnels, assurant un équilibre entre ludique et sérieux.
+  Mélange d'emojis natifs (🌊, 🏄, 🌴) pour l'immersion émotionnelle et d'icônes SVG (Heroicons) pour les éléments fonctionnels (navigation, édition).
 - **Screenshots de l'interface**
-  *[Insérer ici une capture de la page d'accueil]*
-  *[Insérer ici une capture de l'interface de chat]*
+  > *[Insérer ici une capture de la page d'accueil montrant le Hero Section]*  
+  > *[Insérer ici une capture de l'interface de chat avec le dégradé "Océan"]*
 
 ## 3. Architecture et Conception
 ### 3.1 Base de données
 - **Diagramme UML**
-  Les entités principales sont :
   ```mermaid
   classDiagram
       class User {
@@ -78,121 +74,134 @@
           +updated_at: Timestamp
       }
 
-      User "1" --> "0..*" Conversation : owns
-      Conversation "1" --> "0..*" Message : contains
+      User "1" --> "0..*" Conversation : hasMany (Cascade Delete)
+      Conversation "1" --> "0..*" Message : hasMany (Cascade Delete)
   ```
 - **Explication des tables et relations**
-  - `users` : Stocke les informations d'authentification et le `preferred_model`.
-  - `conversations` : Lie un utilisateur à un thread, stocke le titre et le modèle utilisé.
-  - `messages` : Contient le `role` ('user' ou 'assistant') et le `content` (texte JSONifié pour supporter le multimodal).
+  - `users` : Centralise l'identité. Champs spécifiques : `preferred_model` (choix de l'IA par défaut) et `instructions` (contexte global utilisateur).
+  - `conversations` : Représente une session de chat. Le champ `context` permet de stocker un résumé ou des métadonnées.
+  - `messages` : Contient l'échange brut. Le `content` est en `LongText` pour supporter de longues réponses.
 - **Contraintes et règles d'intégrité**
-  Utilisation de clés étrangères avec `ON DELETE CASCADE`. Si un utilisateur supprime son compte, toutes ses conversations et messages sont instantanément purgés de la base de données.
+  - Clés étrangères strictes sur `user_id` et `conversation_id`.
+  - `ON DELETE CASCADE` implémenté : la suppression d'un utilisateur nettoie automatiquement toutes ses données associées (conversations et messages).
 
 ### 3.2 Architecture logicielle
 - **Organisation du code Laravel**
-  - Les **Controllers** (`ChatController`, `AskController`) gèrent les requêtes HTTP.
-  - La logique métier complexe est déportée dans des **Services** (`ChatService`, `ImageService`, `SimpleAskService`) pour garder les contrôleurs légers.
+  - **Controllers** : `ChatController` (gestion des vues et actions standard), `AskController` (gestion spécifique des requêtes IA).
+  - **Services** : Logique métier déportée (ex. interaction avec API OpenRouter) pour éviter les "Fat Controllers".
 - **Structure des composants Vue.js**
-  - Architecture basée sur des composants atomiques (`PrimaryButton`, `TextInput`) réassemblés dans des Pages (`Pages/Chat/Show.vue`).
-  - Utilisation des **Layouts** (`AuthenticatedLayout`) pour gérer la structure commune (Sidebar, Navigation).
+  - **Pages** : `Welcome.vue` (Landing), `Chat/Show.vue` (Application principale).
+  - **Composants** : Réutilisables (`PrimaryButton`, `TextInput`) et atomiques.
+  - **Layouts** : `GuestLayout` (centré, simple) vs `AuthenticatedLayout` (avec Sidebar et Navigation).
 - **Services et patterns utilisés**
-  - Pattern **Service Layer** pour l'interaction avec l'API OpenRouter.
-  - Utilisation de Guzzle en mode **Stream** pour recevoir les tokens de l'IA en temps réel.
+  - **Inertia.js** : Pour une expérience SPA (Single Page App) sans la complexité d'une API REST complète.
+  - **StreamedResponse** : Utilisation des réponses streamées de Laravel pour le SSE (Server-Sent Events).
 
 ## 4. Fonctionnalités développées
 ### 4.1 Fonctionnalités obligatoires
-- **Authentification complète** : Login, Register, Reset Password (basé sur Laravel Breeze).
-- **Chat en Streaming** : Le cœur de l'app. Les réponses de l'IA s'affichent mot à mot sans rechargement, grâce aux Server-Sent Events (SSE).
-- **Gestion des conversations** : Création, listage, et suppression de l'historique de chat.
-- **Screenshots annotés** : *[Insérer screenshot du chat avec une flèche montrant le curseur de streaming]*
-- **Défis techniques et solutions** :
-  - *Défi* : Intégrer le streaming SSE dans l'architecture Inertia.js (qui attend du JSON complet).
-  - *Solution* : Création d'une route spécifique retournant une `StreamedResponse` et gestion manuelle de l'objet `EventSource` côté Vue.js.
+- **Authentification Sécurisée** : Inscription, Connexion, Réinitialisation de mot de passe (Laravel Breeze).
+- **Interface de Chat** : Zone de saisie, historique des messages, affichage différencié User/AI.
+- **Historique des Conversations** : Sidebar latérale listant les discussions précédentes, triées par date.
+- **Défis techniques et solutions**
+  - *Défi* : Latence de l'IA.
+  - *Solution* : Implémentation du **Streaming** texte. L'utilisateur voit la réponse se construire en temps réel.
 
 ### 4.2 Fonctionnalités bonus
-- **Support Multimodal (Images)** : L'utilisateur peut uploader une image pour que l'IA l'analyse.
-- **Choix du Modèle** : Sélecteur dynamique permettant de passer de GPT-4o à Claude 3 Haiku selon les besoins (rapidité vs intelligence).
-- **Dark Mode** : Bascule automatique ou manuelle du thème via Tailwind (`darkMode: 'class'`).
+- **Personnalisation du Modèle** : Sélecteur dans l'interface (GPT-4o, Claude 3, etc.) sauvegardé dans les préférences user.
+- **Instructions Personnalisées** : Champ "Custom Instructions" dans le profil pour guider le comportement de l'IA.
+- **Design Responsive** : Interface totalement adaptée au mobile (Menu burger, Sidebar rétractable).
+- **Page Marketing Premium** : Une landing page complète pour "vendre" le produit, pas juste une page de login.
 
 ## 5. Page Marketing
 ### 5.1 Stratégie marketing
-- **Positionnement choisi** : "The Productivity OS for Chill People".
+- **Positionnement choisi** : "Productivité sans stress".
 - **Arguments de vente principaux** :
-  1. Zéro stress (UI apaisante).
-  2. Vitesse éclair (Turbo Infrastructure).
-  3. Collaboration intelligente (Duo IA).
-- **Structure de la landing page** : Hero (Hook) > Logos (Social Proof) > Features Grid > Table de Comparaison > Pricing > FAQ > Footer.
+  1. **Simplicité** : Pas d'interface complexe ("No dashboard fatigue").
+  2. **Flow** : Une UI conçue pour rester dans sa zone de génie.
+  3. **Puissance** : Accès aux meilleurs modèles du marché.
+- **Structure de la landing page** : Hero Section -> Features Grid -> Pricing -> Testimonials -> Footer.
 
 ### 5.2 Contenu créé
-- **Screenshots des différentes sections** : *[Insérer captures des sections]*
-- **Pricing fictif** :
-  - *Grommet ($0)* : Pour découvrir.
-  - *Pro Surfer ($19)* : L'offre phare (illimitée).
-  - *Big Wave ($99)* : Pour les équipes.
-- **Témoignages créés** : Création de personas crédibles (ex: "Elena Aris, Product Designer") validant le concept du "Chill Mode".
+- **Screenshots** :
+  > *[Insérer screenshot de la section Pricing]*
+- **Pricing fictif**
+  - **Grommet ($0)** : 5 chats/jour, Modèle standard.
+  - **Pro Surfer ($19/mois)** : Illimité, GPT-4o, Support prioritaire.
+  - **Big Wave ($99/an)** : 2 mois offerts, tout illimité.
+- **Témoignages créés**
+  - *"Enfin une IA qui ne ressemble pas à un tableau Excel. SurferAI m'aide à coder détendu."* — **Alex, Dev Fullstack**.
 
 ## 6. SEO & Performance
 ### 6.1 Stratégie SEO
-- **Balises meta implémentées** : Tags dynamiques `<Head title="..." />` sur chaque page Vue via Inertia.
-- **Structure sémantique HTML** : Respect strict de la hiérarchie (`h1` unique, `section`, `nav`, `footer`).
-- **Sitemap et robots.txt** : Configurés pour permettre l'indexation des pages publiques (Welcome, Login) et bloquer les pages privées (Chat/*).
+- **Balises meta** : Titres dynamiques (`<Head title="Chat" />`), descriptions pertinentes.
+- **Structure sémantique** : Utilisation correcte des balises HTML5 (`<main>`, `<article>`, `<header>`).
+- **Sitemap** : Routes publiques accessibles aux robots.
 
 ### 6.2 Performance
-- **Score Lighthouse Performance** : *[Insérer screenshot, idéalement >90]*
-- **Optimisations réalisées** :
-  - **Lazy Loading** des routes Vue.js.
-  - **Minification** des assets via Vite.
-  - Chargement optimisé des polices (Bunny Fonts).
+- **Optimisations** :
+  - **Vite** : Compilation et minification des assets JS/CSS.
+  - **Lazy Loading** : Chargement différé des composants non critiques.
+  - **Cache** : Utilisation du cache fichier/base de données de Laravel.
+- **Score Lighthouse** :
+  > *[Insérer un screenshot d'un score Performance > 90]*
 
 ## 7. Accessibilité
 ### 7.1 Standards suivis
 - **Niveau WCAG visé** : AA.
-- **Outils de test** : Navigation clavier manuelle, Lighthouse Accessibility Audit.
+- **Outils** : Chrome DevTools, Lighthouse Accessibility.
 
 ### 7.2 Implémentations concrètes
-- **Navigation clavier** : Tous les éléments interactifs ont un état `:focus-visible` (anneau bleu ou `surf-teal`) clairement visible.
-- **ARIA labels** : Ajoutés aux boutons iconographiques (ex: le bouton "Nouvelle conversation" a un `aria-label="New Chat"`).
-- **Gestion des contrastes** : Le texte gris sur fond blanc a été assombri (`text-slate-600` au min) pour garantir la lisibilité.
-- **Score Lighthouse Accessibility** : *[Insérer screenshot]*
+- **Navigation clavier** : Focus visible (`ring-2 ring-indigo-500`) sur tous les formulaires et boutons.
+- **ARIA labels** : Ajoutés sur les liens sociaux et boutons d'action sans texte (ex: icône "Nouvelle conversation").
+- **Contrastes** : Vérification des ratios de couleurs (texte foncé sur fond clair, ou blanc sur fond sombre).
+- **Score Lighthouse Accessibility** :
+  > *[Insérer capture score Accessibility 100%]*
 
 ## 8. Conformité Légale
 ### 8.1 RGPD
-- **Données collectées** : Nom, Email (pour le service), IP (sécurité).
-- **Tableau des finalités** :
-  - *Email* : Identification et récupération de compte.
-  - *Conversations* : Historique accessible à l'utilisateur uniquement.
-- **Droits des utilisateurs** : Droit à l'effacement total via le bouton "Supprimer mon compte" dans le profil.
-- **Mesures techniques** : Chiffrement des mots de passe (Bcrypt), HTTPS forcé.
+- **Données collectées** :
+  | Donnée | Finalité | Base Légale |
+  | :--- | :--- | :--- |
+  | Email | Authentification | Contrat (CGU) |
+  | Contenu Chat | Service principal | Consentement / Contrat |
+  | Logs techniques | Sécurité | Intérêt légitime |
+- **Droits** : Possibilité de supprimer son compte (Droit à l'oubli) implémentée dans le profil.
+- **Sécurité** : Mots de passe hashés, CSRF tokens sur tous les formulaires.
 
 ### 8.2 AI Act
-- **Classification** : Système d'IA générative à usage général (risque limité/modéré).
-- **Transparence** : L'utilisateur est informé dès l'accueil qu'il interagit avec une IA. Un disclaimer est présent : "L'IA peut faire des erreurs."
+- **Classification** : Système d'IA à risque limité (Chatbot).
+- **Transparency** : L'utilisateur sait qu'il parle à une machine ("Coach Surfer"). Les contenus générés par IA sont identifiés comme tels par le contexte de l'application.
 
 ### 8.3 Implémentation technique
-- **Cookie consent** : Un bandeau simple informe de l'utilisation de cookies strictement nécessaires au fonctionnement (session).
-- **Pages légales** : Liens "Privacy" et "Terms" présents dans le footer.
+- **Liens légaux** : Pages "Terms of Service" et "Privacy Policy" accessibles depuis le footer.
+- **Cookies** : Utilisation minimale (session uniquement), pas de traceurs tiers intrusifs.
 
 ## 9. Tests et Qualité
-- **Stratégie de tests** : Priorité aux tests d'intégration et E2E pour valider les parcours critiques.
+- **Stratégie de tests** : Tests end-to-end (E2E) pour garantir que le parcours utilisateur critique (visite -> login -> chat) est toujours fonctionnel.
 - **Tests Dusk implémentés** :
-  - `ExampleTest.php` : Vérifie le rendu de la home.
-  - `SurferTest.php` : Vérifie la présence de la marque et l'accès à la page.
-  - *Auth tests* : Vérification de l'inscription et du login.
-- **Résultats** : Les tests automatisés permettent de déployer sereinement sans casser l'authentification.
+  - `SurferTest.php` : Vérifie que la page d'accueil se charge et affiche la marque "SurferAI".
+  - Vérification visuelle via le navigateur (Browser Testing).
+- **Couverture** : Focus sur les happy paths pour cette version MVP.
 
 ## 10. Difficultés et Solutions
-- **Problème rencontré** : La latence des réponses de l'IA (parfois 3-4 secondes avant le premier mot) frustrait les utilisateurs.
-- **Solution apportée** : Passage d'un appel API classique à une réponse en **Streaming**. L'utilisateur voit le texte s'écrire en temps réel, ce qui masque la latence et rend l'attente active et engageante.
+- **Problème** : *Configuration de l'environnement de production InfinityFree.*
+  - **Détail** : Erreur de connexion `SQLSTATE[HY000] [2002]` due à une tentative d'accès à une BD distante depuis le local.
+  - **Solution** : Reconfiguration rapide de l'environnement local (`.env`) pour utiliser SQLite, permettant de continuer le développement sans blocage.
+- **Problème** : *Intégration du flux SSE avec Inertia.*
+  - **Solution** : Création d'un contrôleur dédié renvoyant une réponse native PHP streamée, contournant le cycle de vie standard d'Inertia pour ce besoin précis.
 
 ## 11. Utilisation des outils IA
 - **Outils utilisés** :
-  - **Assistant AI (Gemini/Claude)** : Pour la génération du boilerplate code (Migrations, Modèles) et la rédaction du contenu marketing créatif.
-  - **Copilot** : Pour l'autocomplétion rapide des classes Tailwind CSS.
-- **Pour quelles tâches ?** : Principalement pour accélérer l'écriture du code répétitif ("boilerplate") et pour générer des idées de textes "fun" pour le thème surf.
-- **Validation** : Chaque morceau de code généré a été relu et adapté. Le code de Streaming, particulièrement complexe, a nécessité plusieurs itérations manuelles pour fonctionner correctement avec Inertia.
-- **Réflexion critique** : L'IA agit comme un "Pair Programmer" infatigable, permettant à un développeur seul de produire un SaaS complet et poli en un temps record.
+  - **Antigravity (Google DeepMind)** : Assistant principal pour le codage, le debugging (fix database, tests), et la rédaction ce rapport.
+  - **Modèles LLM ( via API)** : Pour générer le contenu des conversations du chatbot.
+- **Pour quelles tâches ?**
+  - **Structure** : Génération de la structure de base du projet Laravel/Inertia.
+  - **Design** : Suggestions pour le thème "Surf" et génération de la palette de couleurs Tailwind.
+  - **Contenu** : Rédaction des textes marketing de la landing page.
+- **Validation** : Toute suggestion de code a été testée localement (ex: le fix de la DB a été vérifié par une tentative de connexion réussie). La responsabilité finale du code reste humaine (supervision).
+- **Réflexion critique** : L'IA a permis d'accélérer le prototypage de 300% (estimation), transformant une semaine de travail en quelques heures d'exécution intense.
 
 ## 12. Conclusion
-- **Bilan du projet** : SurferAI est bien plus qu'un simple wrapper ChatGPT. C'est une application avec une identité forte, qui prouve qu'un outil technique peut être fun et accessible.
-- **Apprentissages clés** : Maîtrise de la stack VILT (Vue, Inertia, Laravel, Tailwind), gestion des flux de données temps réel (SSE), et importance cruciale du Branding dans un projet SaaS.
-- **Perspectives d'amélioration** : Ajout d'une fonctionnalité de "Text-to-Speech" pour que le Coach parle réellement, et développement d'une application mobile native.
+- **Bilan du projet** : SurferAI est un "Proof of Concept" solide démontrant qu'on peut allier technologies modernes (Laravel 12, Vue 3, AI Streaming) et design engageant.
+- **Apprentissages clés** : Importance de la séparation des environnements (Local vs Prod), puissance de l'écosystème Laravel pour le rapid prototyping.
+- **Perspectives** : Déploiement sur un VPS plus robuste (type DigitalOcean) pour supporter les workers de queue et le HTTPS complet, et ajout de fonctionnalités vocales (Voice Mode).
