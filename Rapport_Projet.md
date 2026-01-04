@@ -1,6 +1,9 @@
 # SurferAI – Rapport de Projet
 
 ## 1. Introduction
+- **Liens du projet**
+  - **Code Source (GitHub)** : [https://github.com/Civiziled/SurfAI](https://github.com/Civiziled/SurfAI)
+  - **URL de déploiement** : *[Insérer l'URL de votre application déployée ici]*
 - **Contexte et objectifs**
   Le projet "SurferAI" est né de la volonté de dédramatiser l'accès à l'intelligence artificielle. Les interfaces actuelles (ChatGPT, Claude) sont souvent austères et cliniques. L'objectif était de créer une interface "SaaS" complète, fonctionnelle et engageante, qui plonge l'utilisateur dans un univers détendu ("Surf & Océan") pour favoriser la créativité et le "flow", tout en conservant la puissance des modèles LLM modernes.
 - **Périmètre du projet**
@@ -45,7 +48,39 @@
 ### 3.1 Base de données
 - **Diagramme UML**
   Les entités principales sont :
-  `User (1) ---- (*) Conversation (1) ---- (*) Message`
+  ```mermaid
+  classDiagram
+      class User {
+          +id: Integer
+          +name: String
+          +email: String
+          +password: String
+          +preferred_model: String
+          +instructions: Text
+          +created_at: Timestamp
+          +updated_at: Timestamp
+      }
+      class Conversation {
+          +id: Integer
+          +user_id: Integer
+          +title: String
+          +model: String
+          +context: LongText
+          +created_at: Timestamp
+          +updated_at: Timestamp
+      }
+      class Message {
+          +id: Integer
+          +conversation_id: Integer
+          +role: Enum(user, assistant)
+          +content: LongText
+          +created_at: Timestamp
+          +updated_at: Timestamp
+      }
+
+      User "1" --> "0..*" Conversation : owns
+      Conversation "1" --> "0..*" Message : contains
+  ```
 - **Explication des tables et relations**
   - `users` : Stocke les informations d'authentification et le `preferred_model`.
   - `conversations` : Lie un utilisateur à un thread, stocke le titre et le modèle utilisé.
